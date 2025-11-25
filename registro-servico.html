@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Serviço - TechElectro</title>
+    <link rel="stylesheet" href="registro.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="form-container">
+        
+        <header class="form-header">
+            <h1>Registro de Solicitação de Serviço</h1>
+            <p>Utilize este formulário para solicitar suporte de TI, manutenção ou outros serviços internos.</p>
+        </header>
+
+        <form action="index.html" method="POST" onsubmit="return handleFormSubmit(event)">
+            
+            <div class="form-group">
+                <label for="titulo">Título Breve do Serviço</label>
+                <input type="text" id="titulo" name="titulo" required placeholder="Ex: Configurar software X para setor Y">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group half-width">
+                    <label for="requerente">Seu Nome/Requerente</label>
+                    <input type="text" id="requerente" name="requerente" required placeholder="Seu nome completo">
+                </div>
+                <div class="form-group half-width">
+                    <label for="setor">Setor</label>
+                    <select id="setor" name="setor" required>
+                        <option value="">Selecione o Setor</option>
+                        <option value="ti">TI/Suporte</option>
+                        <option value="financas">Finanças</option>
+                        <option value="marketing">Marketing</option>
+                        <option option value="producao">Produção</option>
+                        <option value="rh">Recursos Humanos</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group half-width">
+                    <label for="data_desejada">Data Desejada para o Serviço</label>
+                    <input type="date" id="data_desejada" name="data_desejada" required>
+                </div>
+                <div class="form-group half-width">
+                    <label for="hora_estimada">Hora Estimada</label>
+                    <input type="time" id="hora_estimada" name="hora_estimada">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Prioridade da Solicitação:</label>
+                <div class="radio-group">
+                    <input type="radio" id="prioridade_baixa" name="prioridade" value="baixa" checked>
+                    <label for="prioridade_baixa">Baixa</label>
+                    
+                    <input type="radio" id="prioridade_media" name="prioridade" value="media">
+                    <label for="prioridade_media">Média</label>
+                    
+                    <input type="radio" id="prioridade_alta" name="prioridade" value="alta">
+                    <label for="prioridade_alta">Alta</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="descricao">Descrição Detalhada do Problema/Serviço</label>
+                <textarea id="descricao" name="descricao" rows="5" required placeholder="Descreva o problema ou a necessidade do serviço com o máximo de detalhes."></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">
+                    Enviar Registro
+                </button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script>
+        function handleFormSubmit(event) {
+            // Previne o envio padrão do formulário, que tentaria navegar para a URL fictícia
+            // event.preventDefault(); 
+            
+            // Se você quiser que o navegador exiba o alerta E TENTE enviar, use apenas o alert:
+            alert("✅ Registro enviado com sucesso!.");
+            
+            // Para garantir que o formulário TENTE ir para a URL (e falhe/navegue) depois do alerta, 
+            // basta retornar true (ou não prevenir o default). Como o user quer que funcione ATÉ a parte de enviar, 
+            // vou retornar true para permitir o envio HTTP nativo, mesmo que a URL não exista.
+            return true; 
+        }
+    </script>
+
+</body>
+</html>

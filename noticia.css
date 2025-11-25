@@ -1,0 +1,273 @@
+/* --- Tipografia e Reset --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Fundo muito claro */
+    color: #343a40;
+}
+
+.news-page-container {
+    max-width: 850px; /* Largura ideal para leitura */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+/* --- Header e Navegação --- */
+.news-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 30px;
+}
+
+.back-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: #0056b3;
+}
+
+.logo-small {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #343a40;
+}
+
+/* --- Imagem de Destaque --- */
+.featured-image {
+    margin: 0 0 30px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.featured-image img {
+    width: 50%; 
+    height: auto;
+    display: block;
+}
+
+.featured-image figcaption {
+    background-color: #e9ecef;
+    padding: 8px 15px;
+    font-size: 0.85em;
+    color: #6c757d;
+    text-align: center;
+}
+
+/* --- Meta Informações --- */
+.article-meta {
+    font-size: 0.9em;
+    color: #6c757d;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.category {
+    color: #007bff;
+    font-weight: 700;
+}
+
+/* --- Título e Conteúdo --- */
+.article-title {
+    font-family: 'Merriweather', serif; 
+    font-size: 2.2em;
+    font-weight: 700;
+    color: #212529;
+    margin-top: 0;
+    margin-bottom: 30px;
+    line-height: 1.2;
+}
+
+.article-content {
+    line-height: 1.7;
+    font-size: 1.1em;
+    font-family: 'Merriweather', serif; 
+}
+
+.article-content p {
+    margin-bottom: 25px;
+}
+
+.article-content h3 {
+    font-family: 'Roboto', sans-serif;
+    color: #007bff;
+    border-left: 4px solid #007bff;
+    padding-left: 10px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.article-content ul {
+    list-style: disc;
+    margin-left: 20px;
+    padding-left: 0;
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.article-content a {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Destaque (Blockquote) */
+.highlight-quote {
+    font-style: italic;
+    background: #e9f5ff;
+    border-left: 5px solid #007bff;
+    padding: 15px 20px;
+    margin: 30px 0;
+    color: #333;
+    font-size: 1.15em;
+}
+
+/* --- Footer --- */
+.news-footer {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 40px;
+    border-top: 1px solid #dee2e6;
+    font-size: 0.85em;
+    color: #6c757d;
+}
+
+/* --- Estilos para Comentários (Novos) --- */
+.comments-section {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+}
+
+.comment-header {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 20px;
+}
+
+/* Formulário */
+.comment-form {
+    padding: 20px;
+    background-color: #f0f4f7;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.comment-form h3 {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #343a40;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.comment-form textarea {
+    width: 98%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 100px;
+    margin-bottom: 15px;
+    font-family: inherit;
+    box-sizing: border-box; /* Garante que padding não estoure a largura */
+}
+
+.comment-form button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.comment-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Caixa de Comentário Individual */
+.comment-box {
+    border: 1px solid #ced4da;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.comment-box-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.comment-meta {
+    font-size: 0.85em;
+    color: #6c757d;
+}
+
+.comment-author {
+    font-weight: 700;
+    color: #343a40;
+}
+
+.comment-body {
+    margin-top: 10px;
+    color: #343a40;
+    line-height: 1.5;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+}
+
+/* Ações (Likes/Dislikes/Responder) */
+.comment-actions {
+    display: flex;
+    gap: 10px; /* Espaço entre os botões */
+    font-size: 0.9em;
+}
+
+.comment-actions button {
+    background: none;
+    border: none;
+    color: #6c757d;
+    padding: 0;
+    cursor: pointer;
+    transition: color 0.2s;
+    display: flex; /* Para alinhar o ícone e a contagem */
+    align-items: center;
+}
+
+.comment-actions button:hover {
+    color: #007bff;
+}
+
+.like-button.active { 
+    color: #28a745; /* Cor verde para Like popular */
+    font-weight: 700;
+}
+
+.dislike-button.active-negative { 
+    color: #dc3545; /* Cor vermelha para Dislike notório */
+    font-weight: 700;
+}
+
+.reply-button {
+    color: #007bff;
+    font-weight: 500;
+}
