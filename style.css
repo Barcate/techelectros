@@ -1,0 +1,238 @@
+/* --- Reset Básico e Tipografia --- */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eef1f6; /* Fundo suave de Intranet */
+    color: #333;
+}
+
+.intranet-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- Header --- */
+.intranet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.intranet-header .logo {
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #007bff; /* Azul TechElectro */
+}
+
+.welcome-message {
+    font-size: 1em;
+    color: #555;
+}
+
+/* --- Títulos de Seção --- */
+.section-title {
+    font-size: 1.6em;
+    color: #333;
+    border-bottom: 3px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    font-weight: 700;
+}
+
+/* --- Seção de Acesso Rápido (Botões) --- */
+.quick-access-section {
+    margin-bottom: 40px;
+}
+
+.button-grid {
+    display: grid;
+    /* 4 colunas em telas grandes */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+    gap: 20px;
+}
+
+.tool-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1em;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tool-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.tool-btn .icon {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+/* Cores específicas para os botões */
+.drive { background-color: #28a745; } /* Verde para Drive */
+.service { background-color: #ffc107; color: #333; } /* Amarelo para Serviço */
+.teams { background-color: #6f42c1; } /* Roxo para Teams */
+.hr { background-color: #17a2b8; } /* Ciano para RH */
+
+/* --- Seção de Notícias --- */
+.news-grid {
+    display: grid;
+    /* 3 colunas em telas grandes */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 20px;
+}
+
+.news-card {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: #333;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.news-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorção */
+}
+
+.news-content {
+    padding: 15px;
+}
+
+.news-content h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.news-content p {
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.read-more {
+    color: #0056b3;
+    font-weight: 700;
+    font-size: 0.9em;
+}
+
+/* --- Seção de Treinamentos Técnicos (NOVO) --- */
+.training-section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.training-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.training-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+}
+
+.training-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-color: #007bff;
+}
+
+.training-icon {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    background-color: #f0f4f8;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #007bff;
+}
+
+.training-card h3 {
+    font-size: 1.1em;
+    color: #333;
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+.training-card p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Empurra o botão para o final do card */
+}
+
+.training-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+}
+
+.training-btn:hover {
+    background-color: #0056b3;
+}
+
+/* --- Media Queries para Responsividade --- */
+@media (max-width: 768px) {
+    .intranet-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .intranet-header .logo {
+        margin-bottom: 10px;
+    }
+
+    .button-grid {
+        grid-template-columns: 1fr 1fr; /* 2 colunas em tablets */
+    }
+
+    .news-grid, .training-grid {
+        grid-template-columns: 1fr; /* 1 coluna em celulares */
+    }
+}
