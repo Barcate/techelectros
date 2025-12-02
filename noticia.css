@@ -270,6 +270,7 @@ body {
 .reply-button {
     color: #007bff;
     font-weight: 500;
+<<<<<<< HEAD
 }
 /* --- Multimídia e Iframes --- */
 
@@ -307,4 +308,6 @@ body {
     width: 100%;
     height: 100%;
     border: 0;
+=======
+>>>>>>> 5443550fd4b88fc7cf0240866a1a28b5c76865fd
 }
