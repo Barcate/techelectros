@@ -143,7 +143,81 @@ body {
     font-size: 0.9em;
 }
 
-/* --- Media Queries para Responsividade (Melhor experiência em telas menores) --- */
+/* --- Seção de Treinamentos Técnicos (NOVO) --- */
+.training-section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.training-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.training-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #e0e0e0;
+}
+
+.training-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-color: #007bff;
+}
+
+.training-icon {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    background-color: #f0f4f8;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #007bff;
+}
+
+.training-card h3 {
+    font-size: 1.1em;
+    color: #333;
+    margin: 10px 0;
+    font-weight: 700;
+}
+
+.training-card p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Empurra o botão para o final do card */
+}
+
+.training-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+}
+
+.training-btn:hover {
+    background-color: #0056b3;
+}
+
+/* --- Media Queries para Responsividade --- */
 @media (max-width: 768px) {
     .intranet-header {
         flex-direction: column;
@@ -158,7 +232,7 @@ body {
         grid-template-columns: 1fr 1fr; /* 2 colunas em tablets */
     }
 
-    .news-grid {
+    .news-grid, .training-grid {
         grid-template-columns: 1fr; /* 1 coluna em celulares */
     }
 }
