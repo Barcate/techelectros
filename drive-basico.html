@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechElectro Drive (Visual)</title>
-    <link rel="stylesheet" href="drive.css">
+    <title>TechElectro Drive (Simulação)</title>
+    <link rel="stylesheet" href="drive.css"> 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+   
 </head>
 <body>
 
@@ -13,7 +15,7 @@
         
         <header class="drive-header">
             <div class="drive-logo">
-                <span class="logo-icon">⚡</span> TechElectro Drive
+                <span class="logo-icon">⚡</span> <a href="inicio.html">TechElectro Drive</a>
             </div>
             <div class="search-bar">
                 <input type="text" placeholder="Pesquisar no Drive...">
@@ -23,9 +25,16 @@
         <div class="drive-main-content">
             
             <aside class="drive-sidebar">
-                <button class="new-btn">
-                    + Novo
+                
+                <label for="fileUpload" class="new-btn">
+                    + Novo (Upload)
+                </label>
+                <button class="new-btn create-doc-btn" id="createDocBtn">
+                    + Criar Documento
                 </button>
+                
+                <input type="file" id="fileUpload" style="display: none;">
+
                 <nav class="sidebar-nav">
                     <a href="#" class="nav-item active">Meu Drive</a>
                     <a href="#" class="nav-item">Compartilhados Comigo</a>
@@ -49,7 +58,7 @@
                     <span class="file-date-header">Última Modificação</span>
                 </div>
                 
-                <div class="file-list">
+                <div class="file-list" id="fileListContainer">
                     
                     <div class="file-item folder">
                         <span class="file-name"><span class="icon">📁</span> Documentos da Empresa</span>
@@ -99,5 +108,157 @@
         </div>
     </div>
 
+    <div id="creationModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Criar Novo Documento</h2>
+            <form id="creationForm">
+                <div class="input-group-modal">
+                    <label for="docName">Nome do Documento (.txt):</label>
+                    <input type="text" id="docName" name="docName" placeholder="Ex: Relatório Mensal" required>
+                </div>
+                <button type="submit" class="training-btn">Criar</button>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Elementos de Upload ---
+            const fileUploadInput = document.getElementById('fileUpload');
+            const fileListContainer = document.getElementById('fileListContainer');
+            
+            // --- Elementos do Modal de Criação ---
+            const createDocBtn = document.getElementById('createDocBtn');
+            const creationModal = document.getElementById('creationModal');
+            const closeBtn = document.querySelector('.close-btn');
+            const creationForm = document.getElementById('creationForm');
+            const docNameInput = document.getElementById('docName');
+
+
+            // --- Funções Utilitárias ---
+            
+            function formatBytes(bytes, decimals = 2) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const dm = decimals < 0 ? 0 : decimals;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+            }
+
+            function getFileIcon(fileName) {
+                const ext = fileName.split('.').pop().toLowerCase();
+                switch (ext) {
+                    case 'pdf': return '📄';
+                    case 'xlsx':
+                    case 'csv': return '📊';
+                    case 'docx':
+                    case 'doc': return '✍️';
+                    case 'pptx':
+                    case 'ppt': return '💻';
+                    case 'png':
+                    case 'jpg':
+                    case 'jpeg':
+                    case 'gif': return '🖼️';
+                    case 'txt': return '📝'; // Ícone para arquivos criados (.txt)
+                    case 'folder': return '📁';
+                    default: return '📎';
+                }
+            }
+
+            // 1. Função para renderizar um item de arquivo na lista
+            function renderFileItem(fileInfo, isFolder = false) {
+                const fileItem = document.createElement('div');
+                fileItem.className = isFolder ? 'file-item folder' : `file-item ${fileInfo.name.split('.').pop().toLowerCase()}`;
+                fileItem.setAttribute('data-filename', fileInfo.name);
+
+                // Use o objeto Date diretamente para o formato de exibição
+                const date = new Date(fileInfo.lastModifiedDate);
+                const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };
+                const formattedDate = date.toLocaleDateString('pt-BR', dateOptions).replace(',', ''); // Remove a vírgula se o formato incluir
+
+                const sizeDisplay = isFolder ? '-' : formatBytes(fileInfo.size);
+                const icon = isFolder ? getFileIcon('folder') : getFileIcon(fileInfo.name);
+
+                fileItem.innerHTML = `
+                    <span class="file-name" title="${fileInfo.name}">
+                        <span class="icon">${icon}</span> ${fileInfo.name}
+                    </span>
+                    <span class="file-owner">Eu</span>
+                    <span class="file-size">${sizeDisplay}</span>
+                    <span class="file-date">${formattedDate}</span>
+                `;
+
+                fileItem.addEventListener('click', () => {
+                    alert(`Acessando: ${fileInfo.name}\nTipo: ${isFolder ? 'Pasta' : 'Arquivo'}\n--- Este é um ambiente simulado ---`);
+                });
+
+                // Adiciona o item *depois* do cabeçalho da lista e da pasta estática.
+                // Usaremos prepend para que os novos arquivos apareçam no topo, logo abaixo do cabeçalho/pasta estática.
+                fileListContainer.prepend(fileItem); 
+            }
+            
+            // 2. Evento de MUDANÇA (Upload)
+            fileUploadInput.addEventListener('change', function(event) {
+                const files = event.target.files;
+                if (files.length > 0) {
+                    const file = files[0];
+                    const fileInfo = {
+                        name: file.name,
+                        size: file.size,
+                        lastModifiedDate: file.lastModified // Usar lastModified do objeto File
+                    };
+
+                    renderFileItem(fileInfo);
+                    fileUploadInput.value = ''; // Limpa o input
+                }
+            });
+
+            // 3. Eventos de ABERTURA/FECHAMENTO do Modal
+            createDocBtn.addEventListener('click', () => {
+                creationModal.style.display = 'flex';
+                docNameInput.focus();
+            });
+
+            closeBtn.addEventListener('click', () => {
+                creationModal.style.display = 'none';
+            });
+
+            // Fechar modal ao clicar fora
+            window.addEventListener('click', (event) => {
+                if (event.target == creationModal) {
+                    creationModal.style.display = 'none';
+                }
+            });
+
+            // 4. Evento de CRIAÇÃO (Submissão do Formulário)
+            creationForm.addEventListener('submit', function(event) {
+                event.preventDefault(); 
+                
+                let docName = docNameInput.value.trim();
+                if (docName) {
+                    // Assegura a extensão .txt (pseudo)
+                    if (!docName.toLowerCase().endsWith('.txt')) {
+                        docName += '.txt';
+                    }
+
+                    const newFileInfo = {
+                        name: docName,
+                        size: 0, 
+                        lastModifiedDate: Date.now() // Data de criação/modificação atual
+                    };
+
+                    renderFileItem(newFileInfo);
+
+                    // Limpa o formulário e fecha o modal
+                    docNameInput.value = '';
+                    creationModal.style.display = 'none';
+                    alert(`Documento "${newFileInfo.name}" criado com sucesso!`);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

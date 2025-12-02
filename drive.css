@@ -68,19 +68,26 @@ body {
     border-right: 1px solid #eee;
 }
 
-.new-btn {
+/* Ajuste nos botões da Sidebar para serem funcionais e dois separados */
+.drive-sidebar .new-btn { 
     display: block;
     width: 80%;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 10px auto; /* Reduz margem inferior para caber dois */
     padding: 12px 15px;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 25px;
-    font-size: 1.1em;
+    font-size: 1.0em; /* Levemente menor para caber texto */
     font-weight: 700;
     box-shadow: 0 3px 5px rgba(0, 123, 255, 0.4);
-    cursor: not-allowed; /* Simula que é apenas um visual */
+    cursor: pointer; /* Agora é funcional */
+    text-align: left;
+    transition: background-color 0.2s;
+}
+
+.drive-sidebar .new-btn:hover {
+    background-color: #0056b3;
 }
 
 .sidebar-nav {
@@ -123,7 +130,9 @@ body {
     margin-top: 5px;
     position: relative;
 }
-
+a{
+    text-decoration: none;
+}
 .storage-bar::after {
     content: '';
     position: absolute;
@@ -149,25 +158,26 @@ body {
     margin-bottom: 25px;
 }
 
-/* --- Lista de Arquivos (Tabela Visual) --- */
-.file-list-header {
-    display: flex;
+/* --- Lista de Arquivos (MODIFICADO PARA USAR GRID) --- */
+
+/* Definindo a estrutura de colunas usando Grid */
+.file-list-header, .file-item {
+    display: grid;
+    /* Colunas: Nome (4 partes), Proprietário (1.5 partes), Tamanho (1 parte), Data (2 partes) */
+    grid-template-columns: 4fr 1.5fr 1fr 2fr; 
     padding: 10px 0;
-    border-bottom: 1px solid #ddd;
+    align-items: center;
     font-size: 0.9em;
-    color: #777;
-    margin-bottom: 5px;
 }
 
-.file-name-header { width: 50%; }
-.file-owner-header { width: 20%; }
-.file-size-header { width: 15%; }
-.file-date-header { width: 15%; }
+.file-list-header {
+    border-bottom: 1px solid #ddd;
+    color: #777;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
 
 .file-item {
-    display: flex;
-    align-items: center;
-    padding: 12px 0;
     border-bottom: 1px solid #f0f0f0;
     cursor: pointer;
     transition: background-color 0.2s;
@@ -177,30 +187,36 @@ body {
     background-color: #f8f8f8;
 }
 
+/* Resetando os tamanhos baseados em width pois agora usamos Grid */
 .file-item span {
+    padding-right: 15px; /* Espaçamento entre colunas */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
+/* Removendo as regras de width obsoletas */
+.file-name-header, .file-owner-header, .file-size-header, .file-date-header {
+    width: auto; 
+}
+.file-name, .file-owner, .file-size, .file-date {
+    width: auto;
+}
+
 .file-name {
-    width: 50%;
     color: #000000;
     font-weight: 500;
 }
-
-.file-owner { width: 20%; }
-.file-size { width: 15%; }
-.file-date { width: 15%; }
 
 .file-name .icon {
     margin-right: 8px;
     font-size: 1.1em;
 }
 
-/* Estilos visuais adicionais por tipo de arquivo (opcional) */
+/* Estilos visuais adicionais por tipo de arquivo */
 .file-item.folder .icon { color: #ffc107; } /* Amarelo para pasta */
 .file-item.pdf .icon { color: #dc3545; } /* Vermelho para PDF */
 .file-item.sheet .icon { color: #28a745; } /* Verde para planilha */
 .file-item.doc .icon { color: #007bff; } /* Azul para documento */
 .file-item.slide .icon { color: #6f42c1; } /* Roxo para apresentação */
+.file-item.txt .icon { color: #5cb85c; } /* Verde suave para TXT (documento criado) */
